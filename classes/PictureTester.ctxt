@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ testZeroBlue()
+comment0.text=Method\ to\ test\ zeroBlue
+comment1.params=
+comment1.target=void\ testMirrorVertical()
+comment1.text=Method\ to\ test\ mirrorVertical
+comment2.params=
+comment2.target=void\ testMirrorTemple()
+comment2.text=Method\ to\ test\ mirrorTemple
+comment3.params=
+comment3.target=void\ testCollage()
+comment3.text=Method\ to\ test\ the\ collage\ method
+comment4.params=
+comment4.target=void\ testEdgeDetection()
+comment4.text=Method\ to\ test\ edgeDetection
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+comment5.text=\ Main\ method\ for\ testing.\ \ Every\ class\ can\ have\ a\ main\nmethod\ in\ Java
+numComments=6

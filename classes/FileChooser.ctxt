@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=fileName
+comment0.target=java.lang.String\ getMediaPath(java.lang.String)
+comment0.text=\n\ Method\ to\ get\ the\ full\ path\ for\ the\ passed\ file\ name\n\ @param\ fileName\ the\ name\ of\ a\ file\n\ @return\ the\ full\ path\ for\ the\ file\n
+comment1.params=fileChooser
+comment1.target=java.lang.String\ pickPath(javax.swing.JFileChooser)
+comment1.text=\n\ Method\ to\ pick\ an\ item\ using\ the\ file\ chooser\n\ @param\ fileChooser\ the\ file\ Chooser\ to\ use\n\ @return\ the\ path\ name\n
+comment2.params=
+comment2.target=java.lang.String\ pickAFile()
+comment2.text=\n\ Method\ to\ let\ the\ user\ pick\ a\ file\ and\ return\n\ the\ full\ file\ name\ as\ a\ string.\ \ If\ the\ user\ didn't\ \n\ pick\ a\ file\ then\ the\ file\ name\ will\ be\ null.\n\ @return\ the\ full\ file\ name\ of\ the\ picked\ file\ or\ null\n
+comment3.params=
+comment3.target=java.lang.String\ getMediaDirectory()
+comment3.text=\n\ Method\ to\ get\ the\ directory\ for\ the\ media\n\ @return\ the\ media\ directory\n
+numComments=4
