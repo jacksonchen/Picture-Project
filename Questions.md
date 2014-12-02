@@ -39,13 +39,13 @@
 
 ###### Questions
 
-1.
-2.
-3.
-4.
-5.
-6.
-7.
+1. No
+2. Yes
+3. No, since DigitalPicture is abstract
+4. Yes
+5. Yes
+6. Yes
+7. No
 
 ###### Exercises
 
