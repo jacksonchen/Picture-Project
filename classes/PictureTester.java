@@ -20,33 +20,9 @@ public class PictureTester
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
-    Picture caterpillar = new Picture("caterpillar.jpg");
+    Picture caterpillar = new Picture("beach.jpg");
     caterpillar.explore();
     caterpillar.mirrorVertical();
-    caterpillar.explore();
-  }
-  
-  public static void testMirrorVerticalRightToLeft()
-  {
-    Picture caterpillar = new Picture("caterpillar.jpg");
-    caterpillar.explore();
-    caterpillar.mirrorVerticalRightToLeft();
-    caterpillar.explore();
-  }
-  
-  public static void testMirrorHorizontal()
-  {
-    Picture caterpillar = new Picture("caterpillar.jpg");
-    caterpillar.explore();
-    caterpillar.mirrorHorizontal();
-    caterpillar.explore();
-  }
-  
-  public static void testMirrorHorizontalBottomToTop()
-  {
-    Picture caterpillar = new Picture("caterpillar.jpg");
-    caterpillar.explore();
-    caterpillar.mirrorHorizontalBottomToTop();
     caterpillar.explore();
   }
   
@@ -74,8 +50,69 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
-  
-  /** Main method for testing.  Every class can have a main
+  public static void testKeepOnlyBlue(){
+      
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.keepOnlyBlue();
+    beach.explore();
+    }
+  public static void testNegate(){
+      
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.negate();
+    beach.explore();
+    }
+    public static void testGrayscale(){
+      
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.grayscale();
+    beach.explore();
+    }
+    public static void testFixUnderwater(){
+      
+    Picture beach = new Picture("water.jpg");
+    beach.explore();
+    beach.fixUnderwater();
+    beach.explore();
+    }
+    public static void testMirrorVerticalRightToLeft(){
+      
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.mirrorVerticalRightToLeft();
+    beach.explore();
+    }
+    public static void testMirrorHorizontal()
+  {
+    Picture caterpillar = new Picture("beach.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorHorrizontal();
+    caterpillar.explore();
+  }
+    
+  public static void testMirrorHorizontalBotToTop(){
+      Picture c = new Picture("beach.jpg");
+      c.explore();
+      c.mirrorHorrizontalBotToTop();
+      c.explore();
+    }
+    
+    public static void testMirrorDiagonal(){
+      Picture c = new Picture("beach.jpg");
+      c.explore();
+      c.mirrorDiagonal();
+      c.explore();
+    }
+    public static void testArms(){
+      Picture c = new Picture("snowman.jpg");
+      c.explore();
+      c.mirrorArms();
+      c.explore();
+    }
+    /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
   {
@@ -91,9 +128,9 @@ public class PictureTester
     //testFixUnderwater();
     //testMirrorVertical();
     //testMirrorVerticalRightToLeft();
-    testMirrorHorizontal();
-    testMirrorHorizontalBottomToTop();
-    //testMirrorTemple();
+    testMirrorTemple();
+    //testMirrorDiagonal();
+    //testMirrorHorizontal();
     //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
