@@ -58,7 +58,7 @@
 
 ##### A6: Mirroring pictures
 
-1.
+1. ✓
 2.
 3.
 4.
