@@ -31,9 +31,9 @@
 
 ##### A4: Two-dimensional arrays in Java
 
-1.
-2.
-3.
+1. ✓
+2. ✓
+3. ✓
 
 ##### A5: Modifying a picture
 
