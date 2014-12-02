@@ -26,8 +26,8 @@
 
 ###### Exercises
 
-1.
-2.
+1. ✓
+2. ✓
 
 ##### A4: Two-dimensional arrays in Java
 
