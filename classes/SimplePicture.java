@@ -244,7 +244,7 @@ public class SimplePicture implements DigitalPicture
   * Method to set the title for the picture
   * @param title the title to use for the picture
   */
- public void setTitle(String title) 
+ public void setTitle(String title)
  {
    this.title = title;
    if (pictureFrame != null)

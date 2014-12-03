@@ -59,9 +59,9 @@
 ##### A6: Mirroring pictures
 
 1. ✓
-2.
-3.
-4.
+2. ✓
+3. ✓
+4. ✓
 
 ##### A7: Mirroring part of a picture
 
