@@ -1,7 +1,7 @@
 ##### A1: Introduction to digital pictures and color
 
 1. 8 bits
-2. 4 bytes (RGB + Transparency)
+2. 4 bytes (RGB + Transparency) // because of the alpha channel
 3. 307200 pixels
 
 ##### A2: Picking a color
@@ -31,9 +31,9 @@
 
 ##### A4: Two-dimensional arrays in Java
 
-1.
-2.
-3.
+1. ✓
+2. ✓
+3. ✓
 
 ##### A5: Modifying a picture
 
@@ -58,7 +58,7 @@
 
 ##### A6: Mirroring pictures
 
-1.
+1. ✓
 2.
 3.
 4.
