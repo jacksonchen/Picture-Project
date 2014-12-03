@@ -1,0 +1,143 @@
+[33mcommit 42c06a8b5143e9676d137cc11acf62fb3bd30948[m
+Author: Sky Johnson <jsky.johnson@gmail.com>
+Date:   Tue Dec 2 15:36:31 2014 -0800
+
+    add code up to Act 7, rekt
+
+[33mcommit 76e03ffb600b0e195cc2c250929d72df495de027[m
+Author: Will Kaufman <wjkhoops@gmail.com>
+Date:   Tue Dec 2 15:21:25 2014 -0700
+
+    works on A6 exercises
+
+[33mcommit 67a4cec4c8dd52fd2d4af0808ab03fe9333758e5[m
+Author: Will Kaufman <wjkhoops@gmail.com>
+Date:   Tue Dec 2 14:26:28 2014 -0700
+
+    updates Questions for A4
+
+[33mcommit 8a94109a61bf781ed32a78a31bd4a10c7afa5cbc[m
+Merge: fdf4efa f41de47
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Tue Dec 2 14:25:20 2014 -0700
+
+    Fixes conflicts
+
+[33mcommit fdf4efac34e99e02d5bc8180bcd42d7ccb021d60[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Tue Dec 2 14:22:03 2014 -0700
+
+    A5 Questions
+
+[33mcommit f41de47da7ff5cce3d4f4458b76445a4c5f5ed9f[m
+Author: Will Kaufman <wjkhoops@gmail.com>
+Date:   Tue Dec 2 14:17:45 2014 -0700
+
+    cleans up files in classes/
+
+[33mcommit 1283b31fed3d950998160cb80a5d5c88f46f3e6d[m
+Author: Will Kaufman <wjkhoops@gmail.com>
+Date:   Tue Dec 2 14:11:39 2014 -0700
+
+    completes A4 exercises
+
+[33mcommit 4a0eb201c5accbd186885a1a8ab1fad24a45f889[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Tue Dec 2 11:20:52 2014 -0700
+
+    Finishes A3
+
+[33mcommit 9b2dc2c6c3748155c71aafb7222468a1e9a08a65[m
+Merge: 8a45046 fcfb214
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Tue Dec 2 11:07:43 2014 -0700
+
+    Adds backbone
+
+[33mcommit 8a450469537f17ffaab90c96dbcb647bd1ac7bee[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Tue Dec 2 11:05:13 2014 -0700
+
+    Adds backbone to all the questions
+
+[33mcommit fcfb214319f6afeb1f3ae7a4c88d8def387461e2[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Mon Dec 1 17:21:56 2014 -0700
+
+    Update README
+
+[33mcommit e4b1a733f4b0d9010b16a5a29af1bbee915417c2[m
+Author: Will Kaufman <wjkhoops@gmail.com>
+Date:   Mon Dec 1 14:26:55 2014 -0700
+
+    works on A3 exercises
+
+[33mcommit 707b420f7ac8b8f14f5221df6c31b188c07c0ee9[m
+Merge: c663b44 36368f7
+Author: Will Kaufman <wjkhoops@gmail.com>
+Date:   Mon Dec 1 14:14:19 2014 -0700
+
+    fixes Questions
+
+[33mcommit 36368f720a6fc038ff727e3c0000d35255931afa[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Mon Dec 1 14:12:58 2014 -0700
+
+    Gitignore update
+
+[33mcommit c663b44cfc4053e7f3ea3eb7763e2e72e331c123[m
+Author: Will Kaufman <wjkhoops@gmail.com>
+Date:   Mon Dec 1 14:11:32 2014 -0700
+
+    adds answers to question A3
+
+[33mcommit a3dd22952f82570384368369c158376ba866a2c9[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Mon Dec 1 14:10:15 2014 -0700
+
+    A2 Questions
+
+[33mcommit 84d04cd2c1887571fb58ab7d4419a75f83a91cea[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Mon Dec 1 14:01:24 2014 -0700
+
+    Adds PDF
+
+[33mcommit cc89e3c432753982cf83e6a937196da33670102a[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Mon Dec 1 13:59:05 2014 -0700
+
+    A1 Questions
+
+[33mcommit 0060c952bc1137d3d869cc37c5dc9a58d1a3b5a6[m
+Author: Will Kaufman <wjkhoops@gmail.com>
+Date:   Mon Dec 1 13:52:12 2014 -0700
+
+    updates README again
+
+[33mcommit 87bde428f7a89be04e73d9940e6c4dcdebe97b75[m
+Author: Will Kaufman <wjkhoops@gmail.com>
+Date:   Mon Dec 1 13:50:52 2014 -0700
+
+    updates README
+
+[33mcommit 3cadd3a5a33ad9692885a29de639958d8cc09ca5[m
+Merge: a2c34ac d136c85
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Mon Dec 1 13:41:15 2014 -0700
+
+    Merge branch 'master' of https://github.com/jacksonchen/Picture-Lab
+    
+    README
+
+[33mcommit a2c34ac038e9397a405b6359ae12e4e993f81236[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Mon Dec 1 13:40:45 2014 -0700
+
+    First commit
+
+[33mcommit d136c85fb96fc3414e3e1fd011ab8d202f5f3e46[m
+Author: Jackson Chen <tiger2chen@gmail.com>
+Date:   Mon Dec 1 13:39:23 2014 -0700
+
+    Initial commit
