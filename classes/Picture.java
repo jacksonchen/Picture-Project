@@ -167,20 +167,59 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void invert()
+  {
+      Pixel[][] pixels = this.getPixels2D();
+      for (int row = 0; row < pixels.length; row++)
+      {
+          for (int col = 0; col < pixels[0].length; col++)
+          {
+              int red = 255 - pixels[row][col].getRed();
+              int green = 255 - pixels[row][col].getGreen();
+              int blue = 255 - pixels[row][col].getBlue();
+              
+              Color newColor = new Color(red, green, blue);
+              
+              pixels[row][col].setColor(newColor);
+          }
+      }
+  }
+  
+  public void darken(int amount)
+  {
+      Pixel[][] pixels = this.getPixels2D();
+      for (int row = 0; row < pixels.length; row++)
+      {
+          for (int col = 0; col < pixels[0].length; col++)
+          {
+              int red = pixels[row][col].getRed() - amount;
+              int green = pixels[row][col].getGreen() - amount;
+              int blue = pixels[row][col].getBlue() - amount;
+              
+              Color newColor = new Color(red, green, blue);
+              
+              pixels[row][col].setColor(newColor);
+          }
+      }
+  }
+  
   public void fixUnderwater()
   {
     Pixel[][] pixels = this.getPixels2D();
-    for (Pixel[] rowArray : pixels)
+    keepOnlyRed();
+    grayscale();
+    invert();
+    darken(100);
+    
+    for (int row = 0; row < pixels.length; row++) // Pixel[] rowArray : pixels)
     {
-      for (Pixel pixelObj : rowArray)
-      {   
-        System.out.println("Hello");
-        keepOnlyRed();
-        pixelObj.setRed(255 - pixelObj.getRed());
-        //pixelObj.setBlue(avg);
-        //pixelObj.setGreen(avg);
+      for (int col = 0; col < pixels[0].length; col++) // Pixel pixelObj : rowArray)
+      {
+        // pixels[row][col].setRed(255 - pixels[row][col].getRed());
+        // pixelObj.setBlue(avg);
+        // pixelObj.setGreen(avg);
       }
-    }        
+    }
   }
   
   /** Method that mirrors the picture around a 
