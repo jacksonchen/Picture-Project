@@ -1,7 +1,7 @@
 ##### A1: Introduction to digital pictures and color
 
 1. 8 bits
-2. 3 bytes
+2. 4 bytes (RGB + Transparency)
 3. 307200 pixels
 
 ##### A2: Picking a color
@@ -41,7 +41,7 @@
 
 1. No
 2. Yes
-3. No, since DigitalPicture is abstract
+3. No, since DigitalPicture is an interface
 4. Yes
 5. Yes
 6. Yes
