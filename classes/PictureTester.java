@@ -46,6 +46,7 @@ public class PictureTester
     Picture fishes = new Picture("water.jpg");
     fishes.explore();
     fishes.fixUnderwater();
+    System.out.println("Fixed underwater");
     fishes.explore();
   }
   
