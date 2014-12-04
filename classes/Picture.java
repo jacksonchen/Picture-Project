@@ -202,21 +202,89 @@ public class Picture extends SimplePicture
       }
   }
   
+  /**
+   * Method to fix the fish
+   * Takes a sample and adjust the image
+   * to better see the fish
+   */
+  
   public void fixUnderwater()
   {
     Pixel[][] pixels = this.getPixels2D();
-    keepOnlyRed();
-    grayscale();
-    invert();
-    darken(100);
     
+    int redAverage = 0;
+    int greenAverage = 0;
+    int blueAverage = 0;
+    int totalPixels = 0;
+    
+    int maxRed = 0;
+    int minRed = 255;
+    int maxGreen = 0;
+    int minGreen = 255;
+    int maxBlue = 0;
+    int minBlue = 255;
+    
+    // takes a sample from a fish and finds the average color value and range of colors
+    for (int row = 26; row < 36; row++)
+    {
+        for (int col = 178; col < 198; col++)
+        {
+            totalPixels++;
+            
+            Pixel myPixel = pixels[row][col];
+            
+            redAverage += myPixel.getRed();
+            greenAverage += myPixel.getGreen();
+            blueAverage += myPixel.getBlue();
+            
+            if (myPixel.getRed() > maxRed) { maxRed = myPixel.getRed(); }
+            if (myPixel.getRed() < minRed) { minRed = myPixel.getRed(); }
+            if (myPixel.getGreen() > maxGreen) { maxGreen = myPixel.getGreen(); }
+            if (myPixel.getGreen() < minGreen) { minGreen = myPixel.getGreen(); }
+            if (myPixel.getBlue() > maxBlue) { maxBlue = myPixel.getBlue(); }
+            if (myPixel.getGreen() < minBlue) { minBlue = myPixel.getBlue(); }
+            
+        }
+    }
+    
+    redAverage = redAverage / totalPixels;
+    greenAverage = greenAverage / totalPixels;
+    blueAverage = blueAverage / totalPixels;
+    
+    Color averageColor = new Color(redAverage, greenAverage, blueAverage);
+    
+    // calculates the range
+    int redRange = (maxRed - minRed);
+    int greenRange = (maxGreen - minGreen);
+    int blueRange = (maxBlue - minBlue);
+    
+    int redDistance = redRange;
+    int greenDistance = greenRange;
+    int blueDistance = blueRange;
+    
+    double maxDistance = Math.sqrt(redDistance * redDistance +
+                                   greenDistance * greenDistance +
+                                   blueDistance * blueDistance);
+    
+    double tolerance = 1.7; // higher tolerance means more pixels will be identified as "fish"
+    
+    // changes the image based on calculated distance from sample value
     for (int row = 0; row < pixels.length; row++) // Pixel[] rowArray : pixels)
     {
       for (int col = 0; col < pixels[0].length; col++) // Pixel pixelObj : rowArray)
       {
-        // pixels[row][col].setRed(255 - pixels[row][col].getRed());
-        // pixelObj.setBlue(avg);
-        // pixelObj.setGreen(avg);
+          Pixel myPixel = pixels[row][col]; //
+          
+          boolean closeEnough = myPixel.colorDistance(averageColor) < maxDistance * tolerance; // stopped here, define this***
+          // System.out.println(myPixel.colorDistance(averageColor));
+          if (closeEnough)
+          {
+              myPixel.setBlue(myPixel.getBlue() + 50);
+          }
+          else
+          {
+              myPixel.setBlue(myPixel.getBlue() - 50);
+          }
       }
     }
   }
