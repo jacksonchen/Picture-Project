@@ -48,18 +48,11 @@ dependency9.from=SimplePicture
 dependency9.to=PictureExplorer
 dependency9.type=UsesDependency
 objectbench.height=76
-objectbench.width=700
-<<<<<<< Updated upstream
-package.editor.height=734
-package.editor.width=592
-package.editor.x=-7
-package.editor.y=23
-=======
+objectbench.width=706
 package.editor.height=651
 package.editor.width=598
 package.editor.x=617
-package.editor.y=22
->>>>>>> Stashed changes
+package.editor.y=23
 package.numDependencies=16
 package.numTargets=12
 package.showExtends=true
@@ -128,17 +121,10 @@ target2.typeParameters=
 target2.width=100
 target2.x=80
 target2.y=130
-<<<<<<< Updated upstream
-target3.editor.height=873
-target3.editor.width=653
-target3.editor.x=778
-target3.editor.y=23
-=======
 target3.editor.height=700
 target3.editor.width=900
 target3.editor.x=113
 target3.editor.y=69
->>>>>>> Stashed changes
 target3.height=50
 target3.name=Picture
 target3.naviview.expanded=true
