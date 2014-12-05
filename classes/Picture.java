@@ -13,7 +13,7 @@ import java.util.List; // resolves problem with java.awt.List and java.util.List
  * 
  * @author Barbara Ericson ericson@cc.gatech.edu
  */
-public class Picture extends SimplePicture 
+public class Picture extends SimplePicture
 {
   ///////////////////// constructors //////////////////////////////////
   
@@ -500,20 +500,20 @@ public class Picture extends SimplePicture
     Pixel[][] toPixels = this.getPixels2D();
     Pixel[][] fromPixels = fromPic.getPixels2D();
     for (int fromRow = 0, toRow = startRow; 
-         fromRow < endRow &&
-         toRow < endRow; 
+         fromRow < fromPixels.length &&
+         toRow < endRow;
          fromRow++, toRow++)
     {
       for (int fromCol = 0, toCol = startCol; 
-           fromCol < endCol &&
+           fromCol < fromPixels[0].length &&
            toCol < endCol;  
            fromCol++, toCol++)
       {
         fromPixel = fromPixels[fromRow][fromCol];
         toPixel = toPixels[toRow][toCol];
         toPixel.setColor(fromPixel.getColor());
-        System.out.println("Fromrow " + fromRow + " toRow " + toRow + " fromCol" + fromCol + " toCol " + toCol);
-        System.out.println(fromPixels[0].length);
+        //System.out.println("Fromrow " + fromRow + " toRow " + toRow + " fromCol" + fromCol + " toCol " + toCol);
+        //System.out.println(fromPixels[0].length);
       }
     } 
   }
@@ -524,10 +524,12 @@ public class Picture extends SimplePicture
     Picture flower1 = new Picture("flower1.jpg");
     Picture flower2 = new Picture("flower2.jpg");
     //this.copy(flower1,100,0);
-    this.copy2(flower1,100,20, 0, 100);
+    this.copy2(flower1,10,20, 0, 100);
+    //flower1.explore();
     //this.copy(flower1,200,0);
     Picture flowerNoBlue = new Picture(flower2);
     flowerNoBlue.zeroBlue();
+    this.copy2(flowerNoBlue,100,500,200,500);
     //this.copy(flowerNoBlue,300,0);
     //this.copy(flower1,400,0);
     //this.copy(flower2,500,0);

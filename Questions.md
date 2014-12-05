@@ -54,7 +54,7 @@
 3. ✓
 4. ✓
 5. ✓
-6.
+6. ✓
 
 ##### A6: Mirroring pictures
 
@@ -78,8 +78,8 @@
 
 ##### A8: Creating a collage
 
-1.
-2.
+1. ✓
+2. ✓
 
 ##### A9: Simple edge detection
 
