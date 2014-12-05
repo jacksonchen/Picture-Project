@@ -153,7 +153,7 @@ public class Picture extends SimplePicture
                 int diffromblue = Math.abs(blue-(red+green));
                 //if(blue>(Math.abs(green+red-blue))){
                 pixelObj.setBlue(blue-diffromblue);
-                pixelObj.setGreen(green+diffromblue-(red));
+                pixelObj.setGreen(green+diffromblue);
                 pixelObj.setRed(red+diffromblue);
                 //}
             }
@@ -538,30 +538,40 @@ public class Picture extends SimplePicture
             }
         }
         int edgeDist = ((int)averageDif)/totalpixs;
-        
-        System.out.println(totalpixs+" "+averageDif+" "+edgeDist);
+
+        //System.out.println(totalpixs+" "+averageDif+" "+edgeDist);
         for (int row = 1; row < pixels.length-1; row++)
         {
             for (int col = 1; 
             col < pixels[0].length-1; col++)
             {
-                curPixel = pixels[row][col];
+                int pointave = 0;
+                try{
+                    pointave = 0;
+                    for(int i = -10; i < 10; i++){
+                        for(int k = -10; k < 10; k++){
+                            pointave+=(int)pixels[i+row][k+col].getAverage();
+                        }
+                    }
+                    
+                    pointave=(int)pointave/(10*(20*20));
+                }catch(Exception e){
+                }
                 
+                if(pointave > edgeDist){
+                    pointave=edgeDist;
+                }
+                curPixel = pixels[row][col];
                 rightPixel = pixelsOrg[row][col+1];
                 botPixel = pixelsOrg[row+1][col];
-                
-                
-                
-                double k2 = rightPixel.getAverage()+botPixel.getAverage()+curPixel.getAverage();
-                k2 = (edgeDist*edgeDist)/((k2/3)*(k2/3)+3);
-                //System.out.println(k2);
+
                 
                 if(//curPixel.colorDistance(leftPixel.getColor())>5||
-                curPixel.colorDistance(rightPixel.getColor())>k2||
-                //curPixel.colorDistance(topPixel.getColor())>5||
-                curPixel.colorDistance(botPixel.getColor())>k2){
-                    
-                        curPixel.setColor(Color.BLACK);  
+                curPixel.colorDistance(rightPixel.getColor())>pointave||
+                    //curPixel.colorDistance(topPixel.getColor())>5||
+                curPixel.colorDistance(botPixel.getColor())>pointave){
+
+                    curPixel.setColor(Color.BLACK);  
 
                 }else{
                     curPixel.setColor(Color.WHITE);
