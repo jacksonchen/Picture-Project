@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
+import java.io.*;
 
 /**
  * A class that represents a picture.  This class inherits from 
@@ -544,24 +545,325 @@ public class Picture extends SimplePicture
   {
     Pixel leftPixel = null;
     Pixel rightPixel = null;
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    
     Pixel[][] pixels = this.getPixels2D();
-    Color rightColor = null;
-    for (int row = 0; row < pixels.length; row++)
+    for (int row = 0; row < pixels.length - 1; row++)
     {
       for (int col = 0; 
            col < pixels[0].length-1; col++)
       {
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
-        rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
+        topPixel = pixels[row][col];
+        bottomPixel = pixels[row + 1][col];
+        if (leftPixel.colorDistance(rightPixel.getColor()) > edgeDist ||
+            topPixel.colorDistance(bottomPixel.getColor()) > edgeDist)
           leftPixel.setColor(Color.BLACK);
         else
           leftPixel.setColor(Color.WHITE);
       }
     }
   }
+  
+  /**
+   * Method for edge detection, my way.
+   * Handy methods used in this method are below.
+   * 
+   * 
+   * 
+   */
+  
+  public void edgeDetection2(int edgeDist)
+  {
+      Pixel currentPixel = null, testPixel = null;
+      
+      // width and height of pixel cluster
+      int testWidth = 3;
+      int testHeight = 3;
+      
+      Pixel[][] pixels = this.getPixels2D();
+      double[][] edgeAngle = new double[Math.round(pixels.length / testHeight)][Math.round(pixels[0].length / testWidth)];
+          // the 2D array edgeAngle will store the perceived angle (in radians) of the edge
+      
+      for (int row = 0; row < pixels.length - testHeight; row += testHeight)
+      {
+          for (int col = 0; col < pixels[0].length - testWidth; col += testWidth)
+          {
+              Pixel[][] currentPixels = this.getPixelCluster(pixels, row, col, testWidth, testHeight);
+              
+              double greatestDistance = -10;
+              double greatestAngle = -1; // not actually the greatest value, but corresponding to greatest distance
+              // I may need to determin which of the two partial clusters is darker, for filling in purposes
+              for (double angle = 0; angle < Math.PI + 0.1; angle += Math.PI / 8)
+              {
+                  ArrayList<Pixel> group1 = this.getPartialArray(currentPixels, angle, 0);
+                  Color group1Color = this.getAverageColor(this.getPixelColors(group1));
+                  ArrayList<Pixel> group2 = this.getPartialArray(currentPixels, angle, 1);
+                  Color group2Color = this.getAverageColor(this.getPixelColors(group2));
+                  
+                  double currentColorDistance = this.colorDistance(group1Color, group2Color);
+                  
+                  if (currentColorDistance > greatestDistance)
+                  {
+                      greatestDistance = currentColorDistance;
+                      greatestAngle = angle;
+                  }
+                  
+              }
+              
+              greatestAngle = Math.round(greatestAngle * 100.0) / 100.0;
+              edgeAngle[row / testHeight][col / testWidth] = greatestAngle;
+              
+              
+              if (greatestDistance > edgeDist)
+              {
+                  ArrayList<Pixel> group1 = this.getPartialArray(currentPixels, greatestAngle, 0);
+                  ArrayList<Pixel> group2 = this.getPartialArray(currentPixels, greatestAngle, 1);
+                  
+                  for (Pixel pixel : group1)
+                  {
+                      pixel.setColor(Color.BLACK);
+                  }
+                  
+                  for (Pixel pixel : group2)
+                  {
+                      pixel.setColor(Color.WHITE);
+                  }
+              }
+              else
+              {
+                  for (Pixel[] pixelArray : currentPixels)
+                  {
+                      for (Pixel pixel : pixelArray)
+                      {
+                          pixel.setColor(Color.WHITE);
+                      }
+                  }
+              }
+          }
+      }
+      
+      File file = new File("outputAngles.txt");
+      try{
+      PrintWriter writer = new PrintWriter(file, "UTF-8");
+      
+      
+      for (int row = 0; row < edgeAngle.length; row++)
+      {
+          for (int col = 0; col < edgeAngle[0].length; col++)
+          {
+              writer.print(edgeAngle[row][col]);
+              writer.print(" ");
+          }
+          writer.print("\n");
+      }
+      writer.close();
+      }
+      catch(Exception e){ e.printStackTrace(); }
+  }
+  
+  public double colorDistance(Color testColor1, Color testColor2)
+  {
+      double redDistance = testColor2.getRed() - testColor1.getRed();
+      double greenDistance = testColor2.getGreen() - testColor1.getGreen();
+      double blueDistance = testColor2.getBlue() - testColor1.getBlue();
+      double distance = Math.sqrt(redDistance * redDistance + 
+                                  greenDistance * greenDistance +
+                                  blueDistance * blueDistance);
+      return distance;
+  }
+  
+  public Color getAverageColor(Color[] myColors)
+  {
+      int totalRed = 0;
+      int totalGreen = 0;
+      int totalBlue = 0;
+      
+      int total = 0;
+      
+      for (Color currentColor : myColors)
+      {
+          totalRed += currentColor.getRed();
+          totalGreen += currentColor.getGreen();
+          totalBlue += currentColor.getBlue();
+          total++;
+      }
+      
+      return new Color(totalRed / total, totalGreen / total, totalBlue / total);
+      
+  }
+  
+  public Color[] getPixelColors(ArrayList<Pixel> pixels)
+  {
+      Color[] myColors = new Color[pixels.size()];
+      int count = 0;
+      for (Pixel currentPixel : pixels)
+      {
+          myColors[count] = currentPixel.getColor();
+          count++;
+      }
+      
+      return myColors;
+  }
+  
+  public Pixel[][] getPixelCluster(Pixel[][] pixels, int startRow, int startCol,
+                                   int width, int height)
+  {
+      Pixel[][] pixelCluster = new Pixel[height][width];
+      
+      if (pixels.length < startRow + height || pixels[0].length < startCol + width)
+      {
+          return pixelCluster;
+      }
+      
+      for (int row = startRow; row < startRow + height; row++)
+      {
+          for (int col = startCol; col < startCol + width; col++)
+          {
+              pixelCluster[row - startRow][col - startCol] = pixels[row][col];
+          }
+      }
+      
+      return pixelCluster;
+  }
+  
+  /**
+   * Method getPartialArray takes an array of pixels,
+   * an angle to divide the array, and the "type of" that
+   * determines whether it returns the top/right (0) or
+   * the bottom/left (1)
+   * 
+   * This one only takes the elements that lie on the line of division
+   * 
+   * Need to update this method to match the one below ********
+   * 
+   * @param pixels 
+   * @param angle the angle to divide, given in radians (0 to pi)
+   */
+  public ArrayList<Pixel> getPartialArrayLine(Pixel[][] fullArray, double angle, int typeOf)
+  {
+      int rows = fullArray.length, cols = fullArray[0].length;
+          int centerRow = rows / 2, centerCol = cols / 2;
+          int arrayLength = (rows * cols);
+          ArrayList<Pixel> tempList = new ArrayList<Pixel>();
+          
+          double slope = Math.tan(angle);
+          if (slope == 0) slope = 0.001;
+          double newSlope = -1 / slope;
+          
+          for (int i = 0; i < arrayLength; i++)
+          {
+              int currentRow = i / cols, currentCol = i % cols;
+              //System.out.println(i + "\t" + currentRow + " " + currentCol);
+              if (currentCol == (newSlope * (currentRow - centerRow) + centerCol))
+                      // this tests whether the current cell is above/below the "line"
+              {
+                  if (typeOf == 1)
+                  {
+                      tempList.add(fullArray[currentRow][currentCol]);
+                      //System.out.println("added " + i);
+                  }
+              }
+              else
+              {
+                  if (typeOf == 0)
+                  {
+                      tempList.add(fullArray[currentRow][currentCol]);
+                      //System.out.println("added " + i);
+                  }
+              }
+          }
+          
+          return tempList;
+  }
+  
+  
+  /**
+   * Method getPartialArray takes an array of pixels,
+   * an angle to divide the array, and the "type of" that
+   * determines whether it returns the top/right (0) or
+   * the bottom/left (1)
+   * 
+   * Need to update this method to match the one below ********
+   * 
+   * @param pixels 
+   * @param angle the angle to divide, given in radians (0 to pi)
+   */
+  public ArrayList<Pixel> getPartialArray(Pixel[][] fullArray, double angle, int typeOf)
+  {
+      int rows = fullArray.length, cols = fullArray[0].length;
+          int centerRow = rows / 2, centerCol = cols / 2;
+          int arrayLength = (rows * cols);
+          ArrayList<Pixel> tempList = new ArrayList<Pixel>();
+          
+          double slope = Math.tan(angle);
+          if (slope == 0) slope = 0.001;
+          double newSlope = -1 / slope;
+          
+          for (int i = 0; i < arrayLength; i++)
+          {
+              int currentRow = i / cols, currentCol = i % cols;
+              //System.out.println(i + "\t" + currentRow + " " + currentCol);
+              if (currentCol < (newSlope * (currentRow - centerRow) + centerCol))
+                      // this tests whether the current cell is above/below the "line"
+              {
+                  if (typeOf == 1)
+                  {
+                      tempList.add(fullArray[currentRow][currentCol]);
+                      //System.out.println("added " + i);
+                  }
+              }
+              else
+              {
+                  if (typeOf == 0)
+                  {
+                      tempList.add(fullArray[currentRow][currentCol]);
+                      //System.out.println("added " + i);
+                  }
+              }
+          }
+          
+          return tempList;
+  }
+  
+  public static ArrayList<Integer> getPartialArray(int[][] fullArray, double angle, int typeOf)
+      {
+          int rows = fullArray.length, cols = fullArray[0].length;
+          int centerRow = rows / 2, centerCol = cols / 2;
+          int arrayLength = (rows * cols);
+          ArrayList<Integer> tempList = new ArrayList<Integer>();
+          
+          double slope = Math.tan(angle);
+          if (slope == 0) slope = 0.001;
+          double newSlope = -1 / slope;
+          
+          for (int i = 0; i < arrayLength; i++)
+          {
+              int currentRow = i / cols, currentCol = i % cols;
+              System.out.println(i + "\t" + currentRow + " " + currentCol);
+              if (currentCol < (newSlope * (currentRow - centerRow) + centerCol))
+              {
+                  if (typeOf == 1)
+                  {
+                      tempList.add(fullArray[currentRow][currentCol]);
+                      System.out.println("added " + i);
+                  }
+              }
+              else
+              {
+                  if (typeOf == 0)
+                  {
+                      
+                      tempList.add(fullArray[currentRow][currentCol]);
+                      System.out.println("added " + i);
+                  }
+              }
+          }
+	      
+	      return tempList;
+	  }
   
   
   /* Main method for testing - each class in Java can have a main 
