@@ -1,7 +1,7 @@
-Picture-Lab
+Picture Project
 ===========
 
-Picture Lab for IB/AP Computer Science.
+Picture CS Project
 
 <h3>About the project</h3>
 This project is the last lab for computer science, first semester.
